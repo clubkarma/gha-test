@@ -1,0 +1,12 @@
+name: "Hold"
+
+on: workflow_call
+
+jobs:
+  wait-for-approval:
+    environment: hold
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print approver
+        run: |
+          echo "hold approved by ${{ github.actor }}"

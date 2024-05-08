@@ -1,0 +1,33 @@
+name: "push"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  one:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "one"
+
+  two:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "two"
+
+  hold:
+    uses: ./.github/workflows/workflow-hold.yaml
+
+  three:
+    needs: [one, two, hold]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "three"
+  
+  four:
+    needs: [three]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "four"
+            
